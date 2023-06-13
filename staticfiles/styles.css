@@ -1,0 +1,15 @@
+h1 {
+    font-family: sans-serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+body{
+    background-color: #90ee90;
+}
+
+li{
+    margin: 5px;
+    padding: 2px;
+
+}

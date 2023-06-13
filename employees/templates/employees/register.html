@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type='text/css' href="{% static 'styles_form.css' %}">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div>
+    <form action="{% url 'employees:register' %}" method="post">
+        {% csrf_token %}
+        <input type="text", name="first_name", placeholder="first_name">
+        <input type="text", name="last_name", placeholder="last_name">
+        <input type="text", name="username", placeholder="Username">
+        <input type="email", name="email", placeholder="email">
+        <input type="password", name="password", placeholder="Password">        
+        <input type="submit", value="Submit">
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}   

@@ -12,39 +12,36 @@ Home
 
 
 {% block content %}
-<h1> Home!</h1>
-
-<video class="img-fluid" controls autoplay=True>
-  <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-  Your browser does not support the video tag.
-</video>
-
 
 <div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+  {% comment %} {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
 
-    {% if user.is_authenticated %}
-    <ul class="messages">
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>Hola {{ user.first_name }}  {{ user.last_name }}.</li>
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><a href="{% url 'employees:profile' %}">Actualiza tus datos</a></li>
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><a href="{% url 'employees:logout' %}">Salir de tu cuenta</a></li>
-    </ul>
-    {% else %}
-    <ul class="messages">
-      <a href="{% url 'employees:login' %}">Entra a tu cuenta</a>
-    </ul>
-    {% endif %}    
+  {% if user.is_authenticated %}
+  <ul class="messages">
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>Hola {{ user.first_name }}  {{ user.last_name }}.</li>
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><a href="{% url 'employees:profile' %}">Actualiza tus datos</a></li>
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><a href="{% url 'employees:logout' %}">Salir de tu cuenta</a></li>
+  </ul>
+  {% else %}
+  <ul class="messages">
+    <a href="{% url 'employees:login' %}">Entra a tu cuenta</a>
+  </ul>
+  {% endif %}     {% endcomment %}
 
 </div>
-<br/><br/>
 
+<h1> Las Mirlas</h1>
+
+<video class="img-fluid"  controls autoplay>
+  <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 <div class="container text-center">
     <div class="row align-items-start">

@@ -19,27 +19,32 @@
     </head>
     <body>
 
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-              <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-              >Link</a>
+        <ul class="nav justify-content-end">  
 
-            </li>
+            {% if messages %}
+                {% for message in messages %}
+                <li{% if message.tags %} class="nav-item"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            {% endif %}
+          
+            {% if user.is_authenticated %}
+                <li{% if message.tags %} class="nav-item"{% endif %}>Hola {{ user.first_name }}  {{ user.last_name }}.</li>
+                <li{% if message.tags %} class="nav-item"{% endif %}><a href="{% url 'employees:profile' %}">Actualiza tus datos</a></li>
+                <li{% if message.tags %} class="nav-item"{% endif %}><a href="{% url 'employees:logout' %}">Salir de tu cuenta</a></li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'employees:login' %}">Entra a tu cuenta</a>
+              </li>            
+            {% endif %}    
+
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                Link</a>
+                Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled">
-                <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                Disabled</a>
+                <img src="{% static 'telephone.jpeg' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Llamanos: 300-760-7392!</a>
             </li>
           </ul>
 

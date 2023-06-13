@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w+%#^oq(!gohh^1v*@_nh+_vq8zh35mhovyt14ld_sfvtmq%ip
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlas.azurewebsites.net']

@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .serializer import taskserializer
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from .models import task
 
- # Create your views here.
-
-def index(request):
-    return render(request, "tasks/index.html")
+class TaskViewSet(viewsets.ModelViewSet):    
+    authentication_classes = [SessionAuthentication,BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = taskserializer
+    queryset = task.objects.all()  

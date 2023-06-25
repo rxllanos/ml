@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w+%#^oq(!gohh^1v*@_nh+_vq8zh35mhovyt14ld_sfvtmq%ip
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlas.azurewebsites.net']
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'inventory',
     'tasks',
     'employees',
+    'photo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,7 +101,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": 'lasmirlasdatabase.postgres.database.azure.com',
+        "HOST": '20.228.199.248',
         "PORT": "5432",
         "OPTION":{"sslmode":'require'},
     }
@@ -143,14 +144,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/images/'
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'finca','static'),
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATIC_LOCATION = "static"
 # MEDIA_LOCATION = "media"
 

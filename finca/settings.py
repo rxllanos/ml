@@ -31,8 +31,6 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'https://lasmirlas.azurewebsites.net']
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'inventory',
     'tasks',
@@ -46,8 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -82,17 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'finca.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     "default": {
@@ -138,10 +123,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 
@@ -155,22 +136,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATIC_LOCATION = "static"
-# MEDIA_LOCATION = "media"
 
-# STORAGES = {
-    # "default": {"BACKEND": "storages.backends.azure_storage.AzureStorage"},
-#     "staticfiles": {"BACKEND": PublicAzureStorage},
-# }
-
-# DEFAULT_FILE_STORAGE = 'custom_azure.AzureMediaStorage'
-# STATICFILES_STORAGE = 'custom_azure.AzureStaticStorage'
-# AZURE_ACCOUNT_NAME = "lasmirlastorage"
-# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
-# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

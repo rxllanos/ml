@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,11 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w+%#^oq(!gohh^1v*@_nh+_vq8zh35mhovyt14ld_sfvtmq%ip'
-
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlas.azurewebsites.net']
@@ -47,8 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -98,11 +97,11 @@ WSGI_APPLICATION = 'finca.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": '20.228.199.248',
-        "PORT": "5432",
+        "NAME": config('PGDATABASE'),
+        "USER": config('PGUSER'),
+        "PASSWORD": config('PGPASSWORD'),
+        "HOST": config('PGHOST'),
+        "PORT": config('PGPORT'),
         "OPTION":{"sslmode":'require'},
     }
 }

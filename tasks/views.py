@@ -1,13 +1,44 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .serializer import taskserializer
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets
-from .models import task
+from .models import task, Task_name
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-class TaskViewSet(viewsets.ModelViewSet):    
-    authentication_classes = [SessionAuthentication,BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-    serializer_class = taskserializer
-    queryset = task.objects.all()  
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls ={
+        'List':'/task-list/',
+        'Detail':'/task-detail/<str:pk>/',
+        'Create':'/task-create/',
+        'Update':'/task-update/<str:pk>/',
+        'Delete':'/task-delete/<str:pk>/',
+    }
+    return Response(api_urls)
+
+@api_view(['GET'])
+def taskList(request):
+    tasks = task.objects.all()
+    serializer = taskserializer(tasks, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def taskDetail(request,pk):
+    task1 = task.objects.get(id=pk)
+    
+    serializer = taskserializer(task1,many=False)
+    return Response(serializer.data)
+
+@api_view(['PUT'])
+def taskUpdate(request,pk):
+    task1 = task.objects.get(id=pk)
+    serializer = taskserializer(task1, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def taskDelete(request,pk):
+    task1 = task.objects.get(id=pk)
+    task1.delete()
+    return Response('item deleted')

@@ -17,9 +17,6 @@
     
     </head>
     <body>
-
-        <ul class="nav justify-content-end">  
-
             {% if messages %}
                 {% for message in messages %}
                 <li{% if message.tags %} class="nav-item"{% endif %}>{{ message }}</li>
@@ -27,25 +24,26 @@
             {% endif %}
           
             {% if user.is_authenticated %}
+            <ul class="nav justify-content-end">
                 <li{% if message.tags %} class="nav-item"{% endif %}>Hola {{ user.first_name }}  {{ user.last_name }}.   </li>
                 &nbsp;
                 <li{% if message.tags %} class="nav-item"{% endif %}><a href="{% url 'data' %}">  Datos corporativos  </a></li>
                 <li{% if message.tags %} class="nav-item"{% endif %}><a href="{% url 'employees:logout' %}">  Salir de tu cuenta  </a></li>
+            </ul>
             {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'employees:login' %}">Entra a tu cuenta</a>
-                <a class="nav-link" href="{% url 'employees:register' %}">Registrate</a>
-              </li>            
+            <ul class="nav justify-content-end">
+              <li class="nav-item"> <a class="nav-link" href="{% url 'employees:login' %}">Entra a tu cuenta</a></li>
+              <li class="nav-item">  <a class="nav-link" href="{% url 'employees:register' %}">Registrate</a> </li>  
+            </ul>  
             {% endif %}    
-
-            <li class="nav-item">
-              <a class="nav-link disabled">
-                <img src="{% static 'telephone.jpeg' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                Llamanos: 300-760-7392!</a>
-            </li>
-          </ul>
-
-
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link disabled">
+                  <img src="{% static 'telephone.jpeg' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                  Llamanos: 300-760-7392!</a>
+              </li>
+           </ul> 
+           
         {% block content %}
         {% endblock %}    
 

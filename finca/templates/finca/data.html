@@ -1,8 +1,12 @@
 {% extends 'layout.html' %}
 {% load static %}
 
+{% block head_title %}
+Datos Operativos
+{% endblock %}
+
 {% block extra_head %}
-<script src="{% static 'home.js' %}"></script>
+<script src="{% static 'data.js' %}"></script>
 {% endblock %}
 
 
@@ -48,8 +52,9 @@
     <div class="row justify-content-sm-center">
         <div class="col-sm-10">
             <div id="Pendientes">
-                {% if tasks_missing.count %}
-                <h5> {{tasks_missing.count}} pendientes no completados,  {{ tasks.count }} totales. </h5>  
+                
+                <h5> {{tasks_missing.count}} pendientes,  {{ tasks.count }} totales. </h5>  
+                {% if tasks.count %}
                 <h2> PENDIENTES </h2>
                 <div id="task_list"></div> 
                 {% else %} 
@@ -67,8 +72,5 @@
 
 <p>{% csrf_token %}</p>
 
-
-
-<script src="{% static 'home.js' %}"></script>
 
 {% endblock %}   

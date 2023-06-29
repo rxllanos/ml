@@ -19,25 +19,24 @@ function showPage(page) {
       document.querySelector('#Inventario').style.display = 'block';
       finventario();
       }  
+
 }
 
 function finventario(){
-  console.log("hello")
 }
 
 
 function fPendientes(){
     document.querySelector('#Pendientes').style.display = 'none';
     document.querySelector('#Pendientes').style.display = 'block';
-    document.querySelector('#task_list').innerHTML =''; 
-    fetch('/tasks/viewset/')
+    // document.querySelector('#task_list').innerHTML =''; 
+    fetch('/tasks/task-list/')
     .then(response => response.json())
     .then(data => {
       data.forEach(item => {
-            if (item.title !== undefined) {
                 const task_entry = document.createElement('div');
                 task_entry.className = 'task_entry';
-                task_entry.innerHTML += ` Categoria: ${item.category_name}, Nombre: ${item.title}, Detalle: ${item.description} Completado : ${item.completado}. `;
+                task_entry.innerHTML += ` Categoria: ${item.category_name}, Nombre: ${item.title}, Completado : ${item.completado}. `;
                 var btn = document.createElement("BUTTON");
                 btn.setAttribute = ("class", "negative ui button");   
                 btn.class = "negative ui button"; 
@@ -45,10 +44,11 @@ function fPendientes(){
                 btn.className = "del";
                 btn.value = item.id;               
                 task_entry.appendChild(btn);
-
                 var btn1 = document.createElement("BUTTON");
                 btn1.setAttribute = ("class", "negative ui button");  
                 btn1.class = "negative ui button";  
+                btn1.value = item.id;  
+                btn1.dataset.section = item.tcompletado; 
                 if(item.tcompletado==true){
                 btn1.innerHTML = "No completado?";
                 }
@@ -56,10 +56,6 @@ function fPendientes(){
                 btn1.innerHTML = "Terminado?";
                 }   
                 btn1.className = "comp";
-                btn1.value = item.id;  
-                btn1.dataset.section = item.tcompletado; 
-                console.log(btn1.value)
-
                 if (item.tcompletado) {
                 btn1.dataset.section1 = false 
                 } else {
@@ -74,10 +70,6 @@ function fPendientes(){
                 task_entry.style.backgroundColor = "#FDFEFE";
                 }
                 document.querySelector('#task_list').append(task_entry);  
-            }
-            else {
-                document.querySelector('#task_list').innerHTML = 'Invalido.';
-            }
         })
     })
     .catch(error => {
@@ -92,7 +84,7 @@ document.addEventListener('click', event => {
     var csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const element = event.target;
     if (element.className === 'del') {
-      fetch(`tasks/viewset/${element.value}/`, {
+      fetch(`tasks/task-delete/${element.value}/`, {
         method: 'DELETE',
         headers: {
               'Content-Type':'application/json',
@@ -109,7 +101,7 @@ document.addEventListener('click', event => {
     }
     
     if (element.className === 'comp') {
-        fetch(`tasks/viewset/${element.value}/`, {
+        fetch(`tasks/task-update/${element.value}/`, {
           method: 'PUT',
           headers: {
                 'Content-Type':'application/json',

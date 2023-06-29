@@ -2,26 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-LISTTASK = (
-    ('General', 'General'),
-    ('Cortar-Pasto', 'Cortar-Pasto'),
-    ('Limpiar-Casa-Salon', 'Limpiar-Casa-Salon'),
-    ('Limpiar-Perrera', 'Limpiar-Perrera'),
-    ('Desyerbar-Huerta', 'Desyerbar-Huerta'),
-    ('Platear-Arboles', 'Platear-Arboles'),
-    ('Veneno-Ratas', 'Veneno-Ratas'),  
-)
-
-
 class Task_name(models.Model):
     class Meta:
         verbose_name = 'TaskName'
         verbose_name_plural = 'TaskNames'
     name = models.CharField(max_length=100, null=False, blank=False)
-
     def __str__(self):
         return self.name
-
 
 class task(models.Model): 
     responsable = models.ForeignKey(User, on_delete=models.CASCADE, default="TBA" , null=True, blank=True, related_name="asignee")

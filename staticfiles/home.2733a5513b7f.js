@@ -21,10 +21,6 @@ function showPage(page) {
       }  
 }
 
-function finventario(){
-  console.log("hello")
-}
-
 
 function fPendientes(){
     document.querySelector('#Pendientes').style.display = 'none';
@@ -45,11 +41,9 @@ function fPendientes(){
                 btn.className = "del";
                 btn.value = item.id;               
                 task_entry.appendChild(btn);
-
                 var btn1 = document.createElement("BUTTON");
-                btn1.setAttribute = ("class", "negative ui button");  
                 btn1.class = "negative ui button";  
-                if(item.tcompletado==true){
+                if(item.tcompletado){
                 btn1.innerHTML = "No completado?";
                 }
                 else {
@@ -58,8 +52,6 @@ function fPendientes(){
                 btn1.className = "comp";
                 btn1.value = item.id;  
                 btn1.dataset.section = item.tcompletado; 
-                console.log(btn1.value)
-
                 if (item.tcompletado) {
                 btn1.dataset.section1 = false 
                 } else {
@@ -85,7 +77,9 @@ function fPendientes(){
     });
 }
 
-
+function finventario(){
+  window.location.reload();
+}
 
 
 document.addEventListener('click', event => {
@@ -116,7 +110,7 @@ document.addEventListener('click', event => {
                 'X-CSRFToken': csrf_token,
           },
           body: JSON.stringify({
-            tcompletado : element.dataset.section1,
+            tcompletado : 'True',
           })
         }) 
         .then(

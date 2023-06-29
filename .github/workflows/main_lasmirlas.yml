@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'LasMirlas'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F99EBDE8DDB5400DBF5CD1C650E1E71A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_08DAE7BBBAEC46E4B95E5A55040A2D7D }}

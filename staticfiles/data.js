@@ -36,7 +36,7 @@ function fPendientes(){
       data.forEach(item => {
                 const task_entry = document.createElement('div');
                 task_entry.className = 'task_entry';
-                task_entry.innerHTML += ` Categoria: ${item.category_name}, Nombre: ${item.title}, Completado : ${item.completado}. `;
+                task_entry.innerHTML += ` Categoria: ${item.group_set}, Nombre: ${item.title}, Completado : ${item.completado}. `;
                 var btn = document.createElement("BUTTON");
                 btn.setAttribute = ("class", "negative ui button");   
                 btn.class = "negative ui button"; 
@@ -76,9 +76,6 @@ function fPendientes(){
         console.log('Error:', error);
     });
 }
-
-
-
 
 document.addEventListener('click', event => {
     var csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
